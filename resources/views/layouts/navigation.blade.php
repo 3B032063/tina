@@ -16,6 +16,24 @@
                         {{ __('首頁') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
+                        {{ __('菜單') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
+                        {{ __('購物車') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
+                        {{ __('訂單') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -67,7 +85,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home.index')" :active="request()->routeIs('home')">
+            <x-responsive-nav-link :href="route('home.index')" :active="request()->routeIs('home.index')">
                 {{ __('home') }}
             </x-responsive-nav-link>
         </div>
