@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('ordrrs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('status');
+            $table->integer('pay');
+            $table->integer('price');
+            $table->string('receiver');
+            $table->string('receiver_phone');
             $table->timestamps();
         });
     }
