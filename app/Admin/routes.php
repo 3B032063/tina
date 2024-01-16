@@ -16,5 +16,4 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('users', UserController::class); //管理買家
     $router->resource('products', ProductController::class); //管理商品
-
 });

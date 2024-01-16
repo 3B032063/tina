@@ -1,21 +1,69 @@
 <?php
-
 namespace App\Admin\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Product;
-use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
-
-class ProductController extends AdminController
+class ProductController extends Controller
 {
+    use HasResourceActions;
     /**
-     * Title for current resource.
+     * Index interface.
      *
-     * @var string
+     * @param Content $content
+     * @return Content
      */
-    protected $title = 'Product';
+    public function index(Content $content)
+    {
+        return $content
+            ->header('商品管理')
+            ->description('管理所有賣場商品')
+            ->body($this->grid());
+    }
+    /**
+     * Show interface.
+     *
+     * @param mixed $id
+     * @param Content $content
+     * @return Content
+     */
+    public function show($id, Content $content)
+    {
+        return $content
+            ->header('Detail')
+            ->description('description')
+            ->body($this->detail($id));
+    }
+    /**
+     * Edit interface.
+     *
+     * @param mixed $id
+     * @param Content $content
+     * @return Content
+     */
+    public function edit($id, Content $content)
+    {
+        return $content
+            ->header('Edit')
+            ->description('description')
+            ->body($this->form()->edit($id));
+    }
+    /**
+     * Create interface.
+     *
+     * @param Content $content
+     * @return Content
+     */
+    public function create(Content $content)
+    {
+        return $content
+            ->header('新增商品')
+            ->description('請於此頁面建立新商品')
+            ->body($this->form());
+    }
 
     /**
      * Make a grid builder.
@@ -24,19 +72,17 @@ class ProductController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new Product());
-
-        $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('description', __('Description'));
-        $grid->column('price', __('Price'));
-        $grid->column('image', __('Image'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-
+        $grid = new Grid(new Product);
+        $grid->id('編號');
+        $grid->title('商品名稱');
+        $grid->description('商名描述');
+        $grid->image('商品圖');
+        $grid->status('是否上架');
+        $grid->price('價錢');
+        $grid->created_at('建立時間');
+        $grid->updated_at('更新時間');
         return $grid;
     }
-
     /**
      * Make a show builder.
      *
@@ -46,18 +92,16 @@ class ProductController extends AdminController
     protected function detail($id)
     {
         $show = new Show(Product::findOrFail($id));
-
-        $show->field('id', __('Id'));
-        $show->field('name', __('Name'));
-        $show->field('description', __('Description'));
-        $show->field('price', __('Price'));
-        $show->field('image', __('Image'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
-
+        $show->id('Id');
+        $show->title('Title');
+        $show->description('Description');
+        $show->image('Image');
+        $show->status('Status');
+        $show->price('Price');
+        $show->created_at('Created at');
+        $show->updated_at('Updated at');
         return $show;
     }
-
     /**
      * Make a form builder.
      *
@@ -65,12 +109,13 @@ class ProductController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Product());
+        $form = new Form(new Product);
 
-        $form->text('name', __('Name'));
-        $form->textarea('description', __('Description'));
-        $form->decimal('price', __('Price'));
-        $form->image('image', __('Image'));
+        $form->text('title', '商品名稱');
+        $form->textarea('description', '商名描述');
+        $form->image('image', '商品圖');
+        $form->switch('status', '是否上架')->default(1);
+        $form->number('price', '價錢');
 
         return $form;
     }
