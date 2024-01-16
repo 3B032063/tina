@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products= Product::all();
         return view('product.index',compact('products'));
     }
 
@@ -36,10 +36,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
-        return view('product.index', compact('product'));
+        $imageUrl =  asset('img/1.jpg') ;
+        return view('products.show',compact('product'),["imageUrl"=>$imageUrl]);
     }
 
     /**

@@ -12,10 +12,12 @@
                     <div class="h3">售價 {{ $product->price }}元</div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">數量</span>
+
                         </div>
-                        <input type="text" class="form-control input-sm" value="1">
+
                         <div class="input-group-append">
+                            <span class="input-group-text">數量</span>
+                            <input type="text" class="form-control input-sm" value="1">
                             <span class="input-group-text">件</span>
                         </div>
                         <div class="input-group-append">
@@ -29,10 +31,4 @@
     </div>
 @endsection
 
-@section('scriptsAfterJs')
-    <script>
-        $(document).ready(function () {
-            @include('product.add2cart')
-        });
-    </script>
-@endsection
+
