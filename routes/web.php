@@ -4,6 +4,7 @@ use App\Admin\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/product',[ProductController::class,'index'])->name('product.index');
 Route::get('/product/{product}',[ProductController::class, 'show'])->name('product.show');
-
+Route::get('/',function (){
+    return view('product.index');
+});
+Route::get('/product/index',function (){
+    return view('product.index');
+})->name('product.index');
+Auth::routes();
 
 
 Route::middleware('auth')->group(function () {
