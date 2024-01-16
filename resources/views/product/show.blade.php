@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('name', $product->name)
 @section('content')
     <div class="card">
         <div class="card-body product-info">

@@ -21,7 +21,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/product',[ProductController::class,'index'])->name('product.index');
 Route::get('/product/{product}',[ProductController::class, 'show'])->name('product.show');
-
+Route::get('/product/index', function () {
+    return view('product.index');
+})->name('product.index');
 
 
 Route::middleware('auth')->group(function () {
