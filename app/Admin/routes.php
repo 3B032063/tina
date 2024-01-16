@@ -1,7 +1,7 @@
 <?php
 
+use App\Admin\Controllers\ProductController;
 use App\Admin\Controllers\UserController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Routing\Router;
 
 Admin::routes();
