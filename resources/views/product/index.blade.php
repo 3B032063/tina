@@ -5,7 +5,9 @@
         @forelse($products as $product)
             <div class="card mb-4">
                 <a href="product/{{$product->id}}">
-                    <img src="{{ assert('$products/img'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                    <img src="{{ asset('storage/products/'.$product->image) }}" alt="{{ $product->name }}" />
+
+
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">

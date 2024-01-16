@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $imageUrl =  asset('img/1.jpg') ;
-        return view('products.show',compact('product'),["imageUrl"=>$imageUrl]);
+        return view('product.show',compact('product'),["imageUrl"=>$imageUrl]);
     }
 
     /**
