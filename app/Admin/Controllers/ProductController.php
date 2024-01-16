@@ -47,8 +47,8 @@ class ProductController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
-            ->description('description')
+            ->header('編輯商品')
+            ->description('可於此頁面修改商品內容')
             ->body($this->form()->edit($id));
     }
     /**
@@ -74,7 +74,7 @@ class ProductController extends Controller
     {
         $grid = new Grid(new Product);
         $grid->id('編號');
-        $grid->title('商品名稱');
+        $grid->name('商品名稱');
         $grid->description('商名描述');
         $grid->image('商品圖');
         $grid->status('是否上架');
@@ -93,7 +93,7 @@ class ProductController extends Controller
     {
         $show = new Show(Product::findOrFail($id));
         $show->id('Id');
-        $show->title('Title');
+        $show->name('name');
         $show->description('Description');
         $show->image('Image');
         $show->status('Status');
@@ -111,7 +111,7 @@ class ProductController extends Controller
     {
         $form = new Form(new Product);
 
-        $form->text('title', '商品名稱');
+        $form->text('name', '商品名稱');
         $form->textarea('description', '商名描述');
         $form->image('image', '商品圖');
         $form->switch('status', '是否上架')->default(1);
