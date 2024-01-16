@@ -1,7 +1,7 @@
 <?php
 namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Models\Product;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;

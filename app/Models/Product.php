@@ -18,17 +18,13 @@ class Product extends Model
         'status',
     ];
 
-    public function productCategory()
+    public function Category()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class);
-    }
 
-    public function orderItems()
+    public function OrderItem()
     {
         return $this->hasMany(OrderItem::class);
     }
